@@ -20,7 +20,6 @@
   <!-- <option value="Faculty 2">Faculty 2</option>
   <option value="Faculty 3">Faculty 3</option>
   <option value="Faculty 4">Faculty 4</option> -->
-  <!-- Add more faculty names here as needed -->
 </select>
 
 <script>
@@ -28,7 +27,7 @@
 
   const CABIN_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQNGjtabub8Zn-7gjNkMIu2CybfxNy7NszHOoyjAx_ciFuMASBWywadgeoZ7wxcqXAkZFRpD7A1v4_N/pub?output=csv';
 
-  // Use these URLs consistently here
+  
   const FACULTY_NAME_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc9vhk-uylCRD16frrhuqB_GgxyMiLeJBpdKagLHBh8LSDZgA/viewform';
   const AVAILABILITY_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeLa8yyXrDRbDLpEDTToqpnHmK0w52p5AaxgRjf27TA21lruQ/viewform';
 
@@ -37,19 +36,19 @@
   function parseCSV(text) {
     const lines = text.trim().split('\n');
     return lines.map(line => {
-      // Split by commas not in quotes, remove surrounding quotes
+      
       return line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g).map(cell => cell.replace(/^"|"$/g, '').trim());
     });
   }
 
-  // Disable dropdown until data loads
+  
   facultySelect.disabled = true;
 
   fetch(CABIN_SHEET_CSV_URL)
     .then(response => response.text())
     .then(csvText => {
       const rows = parseCSV(csvText);
-      // Assuming columns: Timestamp, Faculty Name, Cabin Number (Faculty Name at index 1, Cabin Number at index 2)
+      
       rows.slice(1).forEach(row => {
         const facultyName = row[1];
         const cabinNumber = row[2];
@@ -57,12 +56,12 @@
           cabinData[facultyName.trim()] = cabinNumber.trim();
         }
       });
-      facultySelect.disabled = false; // Enable dropdown after data is ready
+      facultySelect.disabled = false; 
     })
     .catch(error => {
       console.error("Error loading cabin data:", error);
       alert("Error loading cabin data. Please refresh the page.");
-      facultySelect.disabled = false; // Enable to allow manual try
+      facultySelect.disabled = false; 
     });
 
   facultySelect.addEventListener('change', () => {
@@ -81,3 +80,4 @@
 
 </body>
 </html>
+
