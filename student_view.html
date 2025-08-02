@@ -30,12 +30,12 @@
     </tr>
   </thead>
   <tbody>
-    <!-- Dynamic rows will go here -->
+    
   </tbody>
 </table>
 
 <script>
-// Published CSV URLs (replace if needed)
+
 const CABIN_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQNGjtabub8Zn-7gjNkMIu2CybfxNy7NszHOoyjAx_ciFuMASBWywadgeoZ7wxcqXAkZFRpD7A1v4_N/pub?output=csv';
 const AVAILABILITY_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQXRimJYd9pYsaa4_PrfVY2hLCCYy1nuCIrSRHe5e_uPRUIBwfe5dXFSOzfblXsUwHjsUyiVQpXoJfO/pub?output=csv';
 
@@ -60,7 +60,7 @@ Promise.all([
   const cabinRows = parseCSV(cabinCSV);
   const availabilityRows = parseCSV(availabilityCSV);
 
-  // Cabin sheet: Timestamp(0), Faculty Name(1), Cabin Number(2)
+  
   const cabinMap = {};
   cabinRows.slice(1).forEach(row => {
     const name = row[1] || '';
@@ -68,7 +68,7 @@ Promise.all([
     if(name) cabinMap[name.trim()] = cabin.trim();
   });
 
-  // Availability sheet: Timestamp(0), ..., Faculty Name(3), Status(4), Free Slots(5)
+  
   const availabilityMap = {};
   for (let i = availabilityRows.length - 1; i > 0; i--) {
     const row = availabilityRows[i];
@@ -112,3 +112,4 @@ Promise.all([
 
 </body>
 </html>
+
